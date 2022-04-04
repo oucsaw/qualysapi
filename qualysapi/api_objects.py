@@ -193,6 +193,6 @@ class Scan:
 
     def download(self, conn, output_format="json_extended"):
         call = "/api/2.0/fo/scan"
-        parameters = {"action": "fetch", "scan_ref": self.ref, "output_format":output_format}
-        if not self.status in ['Running', 'Queued']: 
+        parameters = {"action": "fetch", "scan_ref": self.ref, "output_format": output_format}
+        if not self.status in ["Running", "Queued"]:
             return conn.request(call, parameters)
