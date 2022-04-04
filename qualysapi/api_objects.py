@@ -190,3 +190,9 @@ class Scan:
             self.status = objectify.fromstring(
                 conn.request(call, parameters).encode("utf-8")
             ).RESPONSE.SCAN_LIST.SCAN.STATUS.STATE
+
+    def download(self, conn, output_format="json_extended"):
+        call = "/api/2.0/fo/scan"
+        parameters = {"action": "fetch", "scan_ref": self.ref, "output_format":output_format}
+        if not self.status in ['Running', 'Queued']: 
+            return conn.request(call, parameters)
